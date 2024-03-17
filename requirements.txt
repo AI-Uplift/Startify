@@ -1,0 +1,7 @@
+python-dotenv
+langchain
+langchain_openai
+langchain-anthropic
+gradio
+chromadb
+bs4

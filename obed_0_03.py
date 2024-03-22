@@ -34,8 +34,9 @@ class Obed03Engineer:
 if __name__ == "__main__":
     obed = Obed03Engineer()
     urls_to_index = [
-        "https://www.gradio.app/guides/blocks-and-event-listeners"
+        
         # Add more URLs that Obed should learn from
+        "https://taikai.network/cartesi/hackathons/cartesi-online-hackathon-2024"
     ]
     obed.initialize_vectorstore(urls_to_index)
-    print(obed.answer_question("How do I create a button in Gradio?"))
+    print(obed.answer_question("How can i build on cartesi "))

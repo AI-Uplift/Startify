@@ -1,0 +1,12 @@
+python-dotenv
+langchain
+langchain_openai
+langchain-anthropic
+gradio
+chromadb
+bs4
+numpy
+scikit-learn
+umap-learn
+transformers
+pandas

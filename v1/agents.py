@@ -1,6 +1,21 @@
+import os
+from dotenv import load_dotenv
+import pika
+import json
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# from .utils import requests_retry_session 
 from bs4 import BeautifulSoup
 from sentence_transformers import SentenceTransformer
+import logging
+logger = logging.getLogger(__name__)  # Configure logger at the module level
+
+# Load environment variables from the .env file
+load_dotenv()
+# Retrieve the RabbitMQ URL from environment variables
+rabbitmq_url = os.getenv('RABBITMQ_URL')
 
 class BaseAgent:
     def __init__(self, name):
@@ -12,21 +27,64 @@ class BaseAgent:
     def process_data(self, data):
         raise NotImplementedError("Each agent must implement its own data processing method.")
 
-
+def requests_retry_session(retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
+    session = session or requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    return session
 class DocumentRetrievalAgent(BaseAgent):
+    def __init__(self, rabbitmq_url, queue_name):
+        super().__init__("DocumentRetrievalAgent")
+        self.queue_name = queue_name
+        # Setup connection using CloudAMQP URL
+        self.connection = pika.BlockingConnection(pika.URLParameters(rabbitmq_url))
+        self.channel = self.connection.channel()
+        self.channel.queue_declare(queue=queue_name)
+
+    def start_consuming(self):
+        self.channel.basic_consume(queue=self.queue_name, on_message_callback=self.on_request, auto_ack=True)
+        print(" [x] Awaiting RPC requests")
+        self.channel.start_consuming()
+
+    def on_request(self, ch, method, props, body):
+        request_data = json.loads(body)
+        print(f"Received request: {request_data}")
+        # Process request (simplified example)
+        response = self.process_data(request_data['urls'])
+
+        # Publishing response back to the callback queue
+        self.channel.basic_publish(exchange='', routing_key=props.reply_to,
+                                   properties=pika.BasicProperties(correlation_id=props.correlation_id),
+                                   body=json.dumps(response))
+        print("Sent response")
+
+    def fetch_document(self, url):
+        session = requests_retry_session()  # Initialize the retry session
+        response = session.get(url)  # Use the session to make the request
+        if response.status_code == 200:
+            return response.text  # Return the document content
+        else:
+            logger.error(f"Failed to fetch document from {url}, status code: {response.status_code}")
+            return "This document could not be retrieved."
+
     def process_data(self, urls):
         documents = []
         for url in urls:
-            response = requests.get(url)
-            if response.status_code == 200:
-                # Assuming you want to store the plain text content
-                soup = BeautifulSoup(response.content, 'html.parser')
-                text = soup.get_text()
-                documents.append(text)
+            content = self.fetch_document(url)
+            if content:
+                documents.append(content)
             else:
+                # Log error or handle the case where the document couldn't be fetched
                 print(f"Failed to retrieve document from {url}")
         return documents
-
 class VectorStoreAgent(BaseAgent):
     def __init__(self, name, embedder_model='all-MiniLM-L6-v2'):
         super().__init__(name)

@@ -1,0 +1,20 @@
+[STORAGE]
+SQLITE_DB = "db/StartifyAI.db"
+SCREENSHOTS_DIR = "screenshots"
+PDFS_DIR = "pdfs"
+PROJECTS_DIR = "projects"
+LOGS_DIR = "logs"
+REPOS_DIR = "repos"
+
+[API_KEYS]
+BING = "a634b5478e4b4c9abff95cd124c81612"
+CLAUDE = "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"
+NETLIFY = "nfp_tZDSG625VdY7xxpsMw19GceBXWYk322V07cc"
+OPENAI = "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"
+MODAL_API_TOKEN="ak-FQqbNuXu36yJroCNUD4FwL"
+
+[API_ENDPOINTS]
+BING = "https://api.bing.microsoft.com/v7.0/search"
+
+
+#modal token set --token-id ak-FQqbNuXu36yJroCNUD4FwL --token-secret as-1egWOCkhzeu5DQY5tnYtoC 

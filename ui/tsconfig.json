@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "module": "es2016",
+      "strict": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  }
+  

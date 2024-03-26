@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".assets/StartifyAI-avatar.png" alt="StartifyAI Logo" width="250">
+  <img src=".assets/StartifyaAI-avatar.png" alt="StartifyAI Logo" width="250">
 </p>
 
 <h1 align="center">🚀 StartifyAI - Agentic AI Software Engineer 👩‍💻</h1>

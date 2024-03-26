@@ -35,9 +35,7 @@ StartifyAI aims to revolutionize the way we build software by providing an AI pa
 > [!NOTE]
 > StartifyAI is modeled after [Devin](https://www.cognition-labs.com/introducing-devin) by Cognition AI. This project aims to be an open-source alternative to Devin with an "overly ambitious" goal to meet the same score as Devin in the [SWE-bench](https://www.swebench.com/) Benchmarks... and eventually beat it?
 
-## Demoes
 
-https://github.com/stitionai/StartifyAI/assets/26198477/cfed6945-d53b-4189-9fbe-669690204206
 
 ## Key Features
 
@@ -65,7 +63,7 @@ StartifyAI's system architecture consists of the following key components:
 8. **Knowledge Base**: Stores and retrieves project-specific information, code snippets, and learned knowledge for efficient access.
 9. **Database**: Persists project data, agent states, and configuration settings.
 
-Read [**ARCHITECTURE.md**](https://github.com/stitionai/StartifyAI/blob/main/ARCHITECTURE.md) for the detailed documentation.
+Read [**ARCHITECTURE.md**](https://github.com/AI-Uplift/StartifyAI/blob/main/ARCHITECTURE.md) for the detailed documentation.
 
 ## Quick Start
 
@@ -102,7 +100,7 @@ To install StartifyAI, follow these steps:
 
 1. Clone the StartifyAI repository:
    ```bash
-   git clone https://github.com/stitionai/StartifyAI.git
+   git clone https://github.com/AI-Uplift/StartifyAI.git
    ```
 2. Navigate to the project directory:
    ```bash

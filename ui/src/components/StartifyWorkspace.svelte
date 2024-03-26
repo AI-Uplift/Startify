@@ -45,7 +45,7 @@
   <style>
   .workspace-container {
   /* Add explicit dimensions if the container might be collapsing */
-  min-height: 400px; /* Adjust as necessary */
+  min-height: 700px; /* Adjust as necessary */
 }
 
 .tabs-header button.active {

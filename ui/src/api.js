@@ -4,6 +4,7 @@ import {
   modelList,
   agentState,
   internet,
+  plannerData,
 } from "./store";
 
 export const API_BASE_URL = "http://127.0.0.1:1337";
@@ -128,3 +129,36 @@ export async function checkInternetStatus() {
     internet.set(false);
   }
 }
+
+export async function fetchPlannerData() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/planner-data`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch planner data');
+    }
+    const data = await response.json();
+    plannerData.set(data);
+  } catch (error) {
+    console.error('fetchPlannerData error:', error);
+  }
+}
+
+// Call this method to trigger the planner execution and fetch updated data
+export async function executePlanner(prompt) {
+  try {
+    await fetch(`${API_BASE_URL}/api/execute-planner`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt }),
+    });
+    // After executing, fetch the updated planner data
+    await fetchPlannerData();
+  } catch (error) {
+    console.error('executePlanner error:', error);
+  }
+}
+
+// Initialize the planner data when the module is loaded
+fetchPlannerData();

@@ -18,7 +18,10 @@ class Browser:
         return self.browser.new_page()
 
     def go_to(self, url):
-        self.page.goto(url)
+        try:
+            self.page.goto(url, wait_until="domcontentloaded")
+        except Exception as e:
+            print(f"Failed to navigate to {url} with exception {e}")
 
     def screenshot(self, project_name):
         screenshots_save_path = Config().get_screenshots_dir()

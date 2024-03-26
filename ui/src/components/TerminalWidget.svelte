@@ -14,7 +14,7 @@
       disableStdin: true,
       cursorBlink: true,
       convertEol: true,
-      rows: 1,
+      // rows: 1,
     });
     fitAddon = new FitAddon();
     terminal.loadAddon(fitAddon);

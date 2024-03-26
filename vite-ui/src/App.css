@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.poppins-thin {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 100;
+	font-style: normal;
+}
+
+.poppins-extralight {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 200;
+	font-style: normal;
+}
+
+.poppins-light {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 300;
+	font-style: normal;
+}
+
+.poppins-regular {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.poppins-medium {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.poppins-semibold {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	font-style: normal;
+}
+
+.poppins-bold {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.poppins-extrabold {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 800;
+	font-style: normal;
+}
+
+.poppins-black {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 900;
+	font-style: normal;
+}
+
+.poppins-thin-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 100;
+	font-style: italic;
+}
+
+.poppins-extralight-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 200;
+	font-style: italic;
+}
+
+.poppins-light-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 300;
+	font-style: italic;
+}
+
+.poppins-regular-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.poppins-medium-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	font-style: italic;
+}
+
+.poppins-semibold-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	font-style: italic;
+}
+
+.poppins-bold-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	font-style: italic;
+}
+
+.poppins-extrabold-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 800;
+	font-style: italic;
+}
+
+.poppins-black-italic {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 900;
+	font-style: italic;
+}
+
+body {
+	font-family: "Montserrat", sans-serif;
+}
+
+.tooltip {
+	visibility: hidden;
+	width: 120px;
+	background-color: #10172a;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 150%;
+	transform: translateY(-50%);
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.nav-button:hover .tooltip {
+	visibility: visible;
+	opacity: 1;
+}
+
+.internet-status {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+}
+
+.online {
+	background-color: #22c55e;
+}
+
+.offline {
+	background-color: #ef4444;
+}
+
+@keyframes roll {
+	0% {
+		transform: translateY(-5%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.token-count-animation {
+	display: inline-block;
+	animation: roll 0.5s ease-in-out;
+}
+
+.control-panel {
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.control-panel > *:not(:first-child) {
+	margin-left: 20px;
+}
+
+.right-controls > *:not(:last-child) {
+	border-right: 1px solid #4b5563;
+	padding-right: 20px;
+}
+
+.expandable-input textarea {
+	min-height: 60px;
+	max-height: 200px;
+	overflow-y: hidden;
+	resize: none;
+}
+
+.workspace-container {
+	/* Add explicit dimensions if the container might be collapsing */
+	min-height: 400px; /* Adjust as necessary */
+}
+
+.tabs-header button.active {
+	background-color: #333; /* Visible contrast color */
+	color: white;
+}
+
+.tab-content {
+	/* Ensure there's enough padding or content to see the area */
+	padding: 20px;
+	border: 1px solid #ccc; /* Visible border for debugging */
+}
+
+#browser-url {
+	pointer-events: none;
+}
+
+.browser-img {
+	display: block;
+	object-fit: contain;
+	max-width: 100%;
+}
+
+.avatar {
+	width: 40px;
+	height: 40px;
+}
+
+#terminal-content {
+	height: 100%;
+}
+
+#terminal-content :global(.xterm) {
+	padding: 10px;
+	height: 100%; /* Ensure terminal content height is fixed */
+}
+
+#terminal-content :global(.xterm-viewport) {
+	overflow-y: auto !important;
+	height: 100%;
+}
+
+#terminal-content::-webkit-scrollbar,
+#terminal-content :global(.xterm-viewport)::-webkit-scrollbar {
+	width: 4px;
+}
+
+#terminal-content::-webkit-scrollbar-track,
+#terminal-content :global(.xterm-viewport)::-webkit-scrollbar-track {
+	background: #020617;
+	border-radius: 10px;
+}
+
+#terminal-content::-webkit-scrollbar-thumb,
+#terminal-content :global(.xterm-viewport)::-webkit-scrollbar-thumb {
+	background: #4337c9;
+	border-radius: 10px;
+}

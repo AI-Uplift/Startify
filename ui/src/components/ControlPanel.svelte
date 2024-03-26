@@ -1,9 +1,10 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
   import { projectList, modelList, internet } from "../store";
   import { createProject, fetchProjectList, getTokenUsage } from "../api";
 
-  let selectedProject = localStorage.getItem("selectedProject") || "Select Project";
+  let selectedProject =
+    localStorage.getItem("selectedProject") || "Select Project";
   let selectedModel = localStorage.getItem("selectedModel") || "Select Model";
   let tokenUsage = 0;
 
@@ -136,7 +137,12 @@
   >
     <div class="flex items-center space-x-2">
       <span>Internet:</span>
-      <div id="internet-status" class="internet-status" class:online={$internet} class:offline={!$internet}></div>
+      <div
+        id="internet-status"
+        class="internet-status"
+        class:online={$internet}
+        class:offline={!$internet}
+      ></div>
       <span id="internet-status-text"></span>
     </div>
     <div class="flex items-center space-x-2">
